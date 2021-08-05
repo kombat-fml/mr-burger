@@ -35,6 +35,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pacifico', cursive;
     margin: 0;
   }
+  p {
+    margin: 0;
+  }
+  button {
+    cursor: pointer;
+  }
+  input, button {
+    font-family: inherit;
+  }
 `;
 
 function App() {

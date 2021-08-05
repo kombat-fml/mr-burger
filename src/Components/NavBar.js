@@ -31,16 +31,21 @@ const ImgLogo = styled.img`
   width: 50px;
 `;
 
-const ImgLogin = styled.img`
-  display: block;
-  margin: 0 auto 3px;
-`;
-
-const SpanLogin = styled.span`
+const LogIn = styled.button`
+  background-color: transparent;
+  border: none;
+  color: white;
   font-size: 16px;
   line-height: 19px;
-  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
+const ImgLogin = styled.img`
+  margin-bottom: 3px;
+`;
+
 
 export const NavBar = () => {
   return (
@@ -49,10 +54,10 @@ export const NavBar = () => {
         <ImgLogo src={logoImg} alt="logo" />
         <H1>MrDonald's</H1>
       </Logo>
-      <div>
+      <LogIn>
         <ImgLogin src={loginImg} alt="icon: login"/>
-        <SpanLogin>войти</SpanLogin>
-      </div>
+        <span>войти</span>
+      </LogIn>
     </NavBarStyled>
   )
 };
