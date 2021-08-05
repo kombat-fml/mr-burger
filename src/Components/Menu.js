@@ -11,18 +11,22 @@ const SectionMenu = styled.section`
   padding: 30px;
 `;
 
-export const Menu = () => {
-  return (
-    <MenuStyled>
-      <Banner />
-      <SectionMenu>
-        <h2>Бургеры</h2>
-        <ListItem itemList={dbMnenu.burger}/>
-      </SectionMenu>
-      <SectionMenu>
-        <h2>Закуски / Напитки</h2>
-        <ListItem itemList={dbMnenu.other}/>
-      </SectionMenu>
-    </MenuStyled>
-  );
-}
+export const Menu = ({ setOpenItem }) => (
+  <MenuStyled>
+    <Banner />
+    <SectionMenu>
+      <h2>Бургеры</h2>
+      <ListItem
+        itemList={dbMnenu.burger}
+        setOpenItem={setOpenItem}
+      />
+    </SectionMenu>
+    <SectionMenu>
+      <h2>Закуски / Напитки</h2>
+      <ListItem
+        itemList={dbMnenu.other}
+        setOpenItem={setOpenItem}
+      />
+    </SectionMenu>
+  </MenuStyled>
+);

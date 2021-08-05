@@ -40,20 +40,22 @@ const Item = styled.li`
   }
 `;
 
-export const ListItem = ({ itemList }) => {
-  return (
-    <List>
-      {itemList.map((item) => (
-        <Item key={item.id} img={item.img}>
-          <span>{item.name}</span>
-          <span>
-            {item.price.toLocaleString('ru-Ru', {
-              style: 'currency',
-              currency: 'RUB',
-            })}
-          </span>
-        </Item>
-      ))}
-    </List>
-  );
-};
+export const ListItem = ({ itemList, setOpenItem }) => (
+  <List>
+    {itemList.map((item) => (
+      <Item
+        key={item.id}
+        img={item.img}
+        onClick={() => setOpenItem(item)}
+      >
+        <span>{item.name}</span>
+        <span>
+          {item.price.toLocaleString('ru-Ru', {
+            style: 'currency',
+            currency: 'RUB',
+          })}
+        </span>
+      </Item>
+    ))}
+  </List>
+);
