@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Banner } from './Banner';
-import dbMnenu from './DBMenu';
+import dbMnenu from '../DBMenu';
 import { ListItem } from './ListItem';
 
 const MenuStyled = styled.main`
