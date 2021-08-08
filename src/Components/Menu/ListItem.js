@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { formatCurrency } from '../Functions/secondaryFuntions';
+
 
 const List = styled.ul`
   display: flex;
@@ -49,12 +51,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
         onClick={() => setOpenItem(item)}
       >
         <span>{item.name}</span>
-        <span>
-          {item.price.toLocaleString('ru-Ru', {
-            style: 'currency',
-            currency: 'RUB',
-          })}
-        </span>
+        <span>{formatCurrency(item.price)}</span>
       </Item>
     ))}
   </List>
