@@ -5,6 +5,8 @@ import { CountItem } from './CountItem';
 import { formatCurrency, totalPriceItems } from '../Functions/secondaryFuntions';
 import { Toppings } from './Toppings';
 import { useToppings } from '../Hooks/useToppings';
+import { useChoices } from '../Hooks/useChoices';
+import { Choices } from './Choices';
 
 const Overlay = styled.div`
   position: fixed;
@@ -57,7 +59,8 @@ const TotalPriceItem = styled.div`
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
   const counter = useCount();
-  const toppings = useToppings(openItem)
+  const toppings = useToppings(openItem);
+  const choices = useChoices(openItem);
 
   const closeModal = (event) => {
     if (event.target.id === "overlay") {
@@ -68,7 +71,8 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   const order = {
     ...openItem,
     count: counter.count,
-    topping: toppings.toppings
+    topping: toppings.toppings,
+    choice: choices.choice,
   };
 
   const addToOrder = () => {
@@ -79,7 +83,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   return (
     <Overlay id="overlay" onClick={closeModal}>
       <Modal>
-        <Banner img={openItem.img}/>
+        <Banner img={openItem.img} />
         <Content>
           <HeaderContent>
             <div>{openItem.name}</div>
@@ -87,11 +91,15 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
           </HeaderContent>
           <CountItem {...counter} />
           {openItem.toppings && <Toppings {...toppings} />}
+          {openItem.choices && <Choices {...choices} openItem={openItem} />}
           <TotalPriceItem>
             <span>Цена:</span>
             <span>{formatCurrency(totalPriceItems(order))}</span>
           </TotalPriceItem>
-          <ButtonCheckout onClick={addToOrder}>Добавить</ButtonCheckout>
+          <ButtonCheckout
+            onClick={addToOrder}
+            disabled={order.choices && !order.choice}
+            >Добавить</ButtonCheckout>
         </Content>
       </Modal>
     </Overlay>
